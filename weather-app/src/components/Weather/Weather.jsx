@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./Weather.css"; 
 
 export default function Weather() {
   const [weather, setWeather] = useState(null);
@@ -26,15 +27,15 @@ export default function Weather() {
     fetchWeather();
   }, []);
 
-  if (loading) return <p>Laddar väderdata...</p>;
-  if (error) return <p>Fel: {error}</p>;
+  if (loading) return <p className="weather-loading">Laddar väderdata...</p>;
+  if (error) return <p className="weather-error">Fel: {error}</p>;
 
   return (
-    <div className="p-4 rounded-xl shadow-lg bg-white max-w-sm mx-auto">
-      <h2 className="text-xl font-bold mb-2">Väderprognos</h2>
-      <p><strong>Temperatur:</strong> {weather.temperature}°C</p>
-      <p><strong>Vindhastighet:</strong> {weather.windspeed} km/h</p>
-      <p><strong>Vindriktning:</strong> {weather.winddirection}°</p>
+    <div className="weather-container">
+      <h2 className="weather-title">Väderprognos</h2>
+      <p className="weather-info">🌡 Temperatur: {weather.temperature}°C</p>
+      <p className="weather-info">💨 Vindhastighet: {weather.windspeed} km/h</p>
+      <p className="weather-info">🧭 Vindriktning: {weather.winddirection}°</p>
     </div>
   );
 }
