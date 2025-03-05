@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import "./Weather.css"; 
+import React, { useState, useEffect } from "react";
+import "./WeatherApp.css";
 
-export default function Weather() {
+const WeatherApp = () => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,4 +38,6 @@ export default function Weather() {
       <p className="weather-info">🧭 Vindriktning: {weather.winddirection}°</p>
     </div>
   );
-}
+};
+
+export default WeatherApp;
