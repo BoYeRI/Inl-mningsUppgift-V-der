@@ -1,11 +1,12 @@
-import Weather from "./components/Weather"; 
+import React from "react";
+import WeatherApp from "./components/Weather/WeatherApp";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Weather />
+    <div className="WeatherSite">
+      <Weather/>
     </div>
   );
-}
+};
 
-export default App;
+export default WeatherApp
