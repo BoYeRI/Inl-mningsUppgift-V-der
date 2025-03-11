@@ -1,12 +1,12 @@
 import React from "react";
 import WeatherApp from "./components/Weather/WeatherApp";
 
-const WeatherApp = () => {
+const App = () => {
   return (
     <div className="WeatherSite">
-      <Weather/>
+      <WeatherApp/>
     </div>
   );
 };
 
-export default WeatherApp
+export default App
