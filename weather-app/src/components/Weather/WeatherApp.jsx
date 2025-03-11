@@ -1,43 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./WeatherApp.css";
 
-const WeatherApp = () => {
-  const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default function WeatherApp() {
+    const [weather, setWeather] = useState(null);
 
-  useEffect(() => {
-    const fetchWeather = async () => {
-      try {
-        const response = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=59.3289&longitude=18.072357&current_weather=true"
-        );
-        if (!response.ok) {
-          throw new Error("Något gick fel vid hämtning av väderdata");
-        }
-        const data = await response.json();
-        setWeather(data.current_weather);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    useEffect(() => {
+        const fetchWeather = async () => {
+            const response = await fetch(
+                "https://api.open-meteo.com/v1/forecast?latitude=59.3289&longitude=18.072357&current_weather=true&timezone=auto"
+            );
+            const data = await response.json();
+            setWeather(data.current_weather);
+        };
 
-    fetchWeather();
-  }, []);
+        fetchWeather();
+    }, []);
 
-  if (loading) return <p className="weather-loading">Laddar väderdata...</p>;
-  if (error) return <p className="weather-error">Fel: {error}</p>;
-
-  return (
-    <div className="weather-container">
-      <h2 className="weather-title">Väderprognos</h2>
-      <p className="weather-info">🌡 Temperatur: {weather.temperature}°C</p>
-      <p className="weather-info">💨 Vindhastighet: {weather.windspeed} km/h</p>
-      <p className="weather-info">🧭 Vindriktning: {weather.winddirection}°</p>
-    </div>
-  );
-};
-
-export default WeatherApp;
+    return (
+        <div className="weather-container">
+            <h2>Väder i Stockholm</h2>
+            {weather ? (
+                <div className="weather-info">
+                    <p>📍 Plats: Stockholm</p>
+                    <p>🌡 Temperatur: {weather.temperature}°C</p>
+                    <p>🕒 Tid: {new Date().toLocaleTimeString()}</p>
+                    <p>📅 Datum: {new Date().toLocaleDateString()}</p>
+                </div>
+            ) : (
+                <p>Hämtar väderdata...</p>
+            )}
+        </div>
+    );
+}
