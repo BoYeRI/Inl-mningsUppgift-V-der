@@ -1,7 +1,7 @@
 import React from "react";
 import WeatherApp from "./components/Weather/WeatherApp";
 
-const App = () => {
+const WeatherApp = () => {
   return (
     <div className="WeatherSite">
       <Weather/>
