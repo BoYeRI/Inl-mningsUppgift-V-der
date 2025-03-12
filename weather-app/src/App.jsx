@@ -1,14 +1,22 @@
-import React from "react";
-import WeatherApp from "./components/Weather/WeatherApp";
-import WeatherAppDetails from "./components/Details/WeatherAppDetails";
+import React, { useState } from 'react';
+import CurrentWeather from './components/Weather/WeatherApp';
+import WeatherDetails from './components/WeatherDetails';
+import SearchBar from './components/SearchBar/SearchBar';
 
 const App = () => {
+  const [location, setLocation] = useState('Stockholm');
+
+  const handleSearch = (newLocation) => {
+    setLocation(newLocation);
+  };
+
   return (
-    <div className="WeatherSite">
-      <WeatherApp/>
-      <WeatherAppDetails/>
+    <div>
+      <SearchBar onSearch={handleSearch} />
+      <CurrentWeather location={location} />
+      <WeatherDetails location={location} />
     </div>
   );
 };
 
-export default App
+export default App;

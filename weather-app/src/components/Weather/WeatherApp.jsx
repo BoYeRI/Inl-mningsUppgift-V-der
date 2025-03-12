@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from "react";
-import "./WeatherApp.css";
+import React, { useState, useEffect } from 'react';
 
-export default function WeatherApp() {
-    const [weather, setWeather] = useState(null);
+const WeatherApp = ({ location }) => {
+  const [weather, setWeather] = useState(null);
 
-    useEffect(() => {
-        const fetchWeather = async () => {
-            const response = await fetch(
-                "https://api.open-meteo.com/v1/forecast?latitude=59.3289&longitude=18.072357&current_weather=true&timezone=auto"
-            );
-            const data = await response.json();
-            setWeather(data.current_weather);
-        };
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const apiKey = 'ac22a0cebd556836825878d960424945'; 
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`;
 
-        fetchWeather();
-    }, []);
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setWeather(data);
+      } catch (error) {
+        console.error('Error fetching weather data', error);
+      }
+    };
 
-    return (
-        <div className="weather-container">
-            <h2>Väder i Stockholm</h2>
-            {weather ? (
-                <div className="weather-info">
-                    <p>📍 Plats: Stockholm</p>
-                    <p>🌡 Temperatur: {weather.temperature}°C</p>
-                    <p>🕒 Tid: {new Date().toLocaleTimeString()}</p>
-                    <p>📅 Datum: {new Date().toLocaleDateString()}</p>
-                </div>
-            ) : (
-                <p>Hämtar väderdata...</p>
-            )}
-        </div>
-    );
-}
+    fetchWeather();
+  }, [location]);
+
+  if (!weather) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h2>{weather.name}</h2>
+      <p>{new Date(weather.dt * 1000).toLocaleString()}</p>
+      <p>{weather.main.temp}°C</p>
+    </div>
+  );
+};
+
+export default WeatherApp;
