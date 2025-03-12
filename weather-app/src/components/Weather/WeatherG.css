@@ -1,0 +1,38 @@
+.weather-container {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 350px;
+    margin: 20px auto;
+    text-align: center;
+    align-items: center;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+  }
+  
+  .weather-info {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+  }
+  
+  p {
+    margin: 5px 0;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
+  
+
+
+
+
+
+
+
