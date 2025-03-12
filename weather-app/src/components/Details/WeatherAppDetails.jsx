@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./WeatherApp.css";
+import "./WeatherAppDetails.css";
 
 export default function WeatherApp() {
     const [forecast, setForecast] = useState([]);
@@ -7,7 +7,7 @@ export default function WeatherApp() {
     useEffect(() => {
         const fetchWeather = async () => {
             const response = await fetch(
-                "https://api.open-meteo.com/v1/forecast?latitude=57.7089&longitude=11.9746&daily=temperature_2m_min,temperature_2m_max&timezone=auto"
+                 "https://api.open-meteo.com/v1/forecast?latitude=59.3289&longitude=18.072357&daily=temperature_2m_min,temperature_2m_max&timezone=auto"
             );
             const data = await response.json();
             const dailyForecast = data.daily;
@@ -24,7 +24,7 @@ export default function WeatherApp() {
 
     return (
         <div className="weather-container">
-            <h2>Väder i Göteborg</h2>
+            <h2>Väderprognos för Stockholm</h2>
             {forecast.length > 0 ? (
                 <div className="weather-info">
                     {forecast.map((day, index) => (
